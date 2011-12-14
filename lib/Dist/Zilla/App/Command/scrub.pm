@@ -36,11 +36,11 @@ __END__
 
 This L<Dist::Zilla> command "scrubs" your workspace clean by removing
 any dependencies that have been installed F<dlib> directory, thus
-forcing the next C<bake> to be done from scratch.
+forcing the next cooking to be done from scratch.
 
 You should periodically C<scrub> your workspace to remove any
 dependencies that are no longer needed.  But you don't need to do it
-every time you bake, or your code/build/test cycles will be unbearably
+every time you cook, or your code/build/test cycles will be unbearably
 long.
 
 =head1 ARGUMENTS
