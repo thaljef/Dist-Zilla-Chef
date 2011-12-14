@@ -21,6 +21,8 @@ sub execute {
     my $archive = $self->zilla->build_archive();
 
     system( qw(cpanm --mirror-only --mirror), $pan, '-L', $dlib, $archive );
+
+    return;
 }
 
 #-------------------------------------------------------------------------------
@@ -39,7 +41,7 @@ This L<Dist::Zilla> command "cooks" your distribution from scratch.
 It builds, tests, and installs, your distribution and all of its
 dependencies in a sandbox using L<cpanm> and L<local::lib>.  The
 dependencies are pulled from the local L<Pinto> repository in the
-f<pan> directoy, and the resulting build is placed in the F<dlib>
+f<pan> directory, and the resulting build is placed in the F<dlib>
 directory.
 
 Baking a distribution is equivalent to installing your distribution

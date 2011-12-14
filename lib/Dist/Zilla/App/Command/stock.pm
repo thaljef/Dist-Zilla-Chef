@@ -19,15 +19,15 @@ sub execute {
     my ($self, $opt, $arg) = @_;
 
     my @phases = qw(build test configure runtime);
-    my @deps = $self->extract_dependencies($self->zilla, \@phases);
-    $self->stock_pantry(@deps);
+    my @deps = $self->_extract_dependencies($self->zilla, \@phases);
+    $self->_stock_pantry(@deps);
 
     return 1;
 }
 
 #-------------------------------------------------------------------------------
 
-sub extract_dependencies {
+sub _extract_dependencies {
     my ($self, $zilla, $phases) = @_;
 
     $_->before_build for $zilla->plugins_with(-BeforeBuild)->flatten;
@@ -46,15 +46,17 @@ sub extract_dependencies {
 
     my @required = grep { $_ ne 'perl' } $req->required_modules;
 
-    return sort { lc $a cmp lc $b } @required;
+    my @sorted = sort { lc $a cmp lc $b } @required;
+
+    return @sorted;
 }
 
 #-------------------------------------------------------------------------------
 
-sub stock_pantry {
+sub _stock_pantry {
     my ($self, @deps) = @_;
 
-    my $pan   = $self->create_or_find_pantry();
+    my $pan   = $self->_create_or_find_pantry();
     my $pinto = Pinto->new(root_dir => $pan);
     $pinto->new_batch(noinit => 1, nocommit => 1);
     $pinto->add_action('Import', package_name => $_) for @deps;
@@ -65,7 +67,7 @@ sub stock_pantry {
 
 #-------------------------------------------------------------------------------
 
-sub create_or_find_pantry {
+sub _create_or_find_pantry {
     my ($self) = @_;
 
     # TODO: Look for a .git or .svn directory in the root directory
