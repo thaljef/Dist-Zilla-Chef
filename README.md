@@ -8,18 +8,18 @@ version 0.001
 
 # DESCRIPTION
 
-Dist::Zilla::Chef is a suite of [Dist::Zilla](http://search.cpan.org/perldoc?Dist::Zilla) commands and plugins
-that help you build & test your dist AND all of its dependencies.
-The idea is to use Dist::Zilla to establish a workflow for managing
-and testing dependencies while your dist grows and evolves.
+Dist::Zilla::Chef is a suite of [Dist::Zilla](http://search.cpan.org/perldoc?Dist::Zilla) commands that help you
+build & test your dist AND all of its dependencies.  The idea is to
+use Dist::Zilla to establish a workflow for managing and testing
+dependencies in isolation while your dist grows and evolves.
 
 Dist::Zilla::Chef relies on [Pinto](http://search.cpan.org/perldoc?Pinto) to create and manage a local
 CPAN-like repository containing a snapshot of all the prerequisites
-that are required by your dist.  As your code evolves, you can
-perodically load the repository with any additional prerequisites that
-your dist needs.  At any time, you can build your dist and all of
-its dependencies in isolation, thus giving you a full test of your
-entire code stack.
+that are required by your dist.  As your code evolves, you can use the
+Dist::Zilla::Chef commands to perodically load the repository with any
+additional prerequisites that your dist needs.  At any time, you can
+build your dist and all of its dependencies in isolation, thus giving
+you a full test of your entire code stack.
 
 This is alpha code.  It is just a proof of concept.  It could even be
 a disproof of concept.  You have been warned.
@@ -27,34 +27,76 @@ a disproof of concept.  You have been warned.
 # WHY IT IS CALLED CHEF
 
 In some ways, creating a dist is like cooking food, and you are the
-chef.  Your dist has many "ingredients" (dependencies).  We store
-these ingredients in a "pantry" (Pinto repostiory).  When we are
-hungry for some code, we "bake" (build) our dist by combining it with
+chef!  Your dist has many ingredients (dependencies).  We store
+these ingredients in a pantry (Pinto repostiory).  When we are
+hungry for some code, we cook (build) our dist by combining it with
 all of the necessary ingredients.
 
-I know, this metaphor isn't perfect.  But I needed a coherent set of
-names for these command plugins.  The cooking metaphor seemed
-reasonable.  Who knows, maybe it will get some traction.
+I know, the cooking metaphor isn't perfect.  But I needed a coherent
+set of names for these command plugins.  The cooking metaphor seemed
+reasonable.  Who knows, maybe it will get some traction.  Suggestions
+are welcome.
 
-# HOW TO BECOME A CHEF
+# HOW TO COOK
 
-Here's the general process for using the Dist::Zilla::Chef commands.  First,
-suppose we are going to make a new distribution call Frobulator.  So we're
-going to use [dzil](http://search.cpan.org/perldoc?dzil) to create the basic structure for us...
+Here's the general workflow for using the Dist::Zilla::Chef commands.
+For this example, suppose you are going to make a new distribution call
+Frobulator.  So you use [dzil](http://search.cpan.org/perldoc?dzil) to create the basic distribution
+structure for you...
 
     dzil new Frobulator
 
-Now we need to write some code.  So let's add a function to the Frobulator
-class...
+Now we write some code.  Suppose you've decided that the `Frobulator`
+is going to use [Mojolicious](http://search.cpan.org/perldoc?Mojolicious).  We aso add an `ABSTRACT`, which is
+required by Dist::Zilla...
 
     # in lib/Frobulator.pm
     package Frobulator;
 
-    use autodie;
+    # ABSTRACT: Does stuff
 
-    sub blazo { ... }
+    use Mojolicious;
 
-Notice that
+And maybe fter a few minutes of coding, you have a couple subroutines
+and maybe a couple test scripts to accompany `Frobulator`.  Now it is
+time to cook!
+
+First, you need to gather the "ingredients" for your distribution and
+"stock" them in the "pantry"...
+
+    dzil stock
+
+Mojolicious (and all of its dependencies) will now be "stocked" in a
+CPAN-like repository in the `pan` directory.  Now you can "cook" your
+distribution and all of its dependencies together...
+
+    dzil cook
+
+This builds, tests, and installs your distribution into the `dlib`
+directory, along with all the dependencies.  The result is stashed
+in the `dlib` directory.
+
+Now suppose you add a new dependency on [Test::More](http://search.cpan.org/perldoc?Test::More).  Once again,
+we run the `stock` command to gather any ingredients that are missing
+from our pantry...
+
+    dzil stock
+
+And finally, we cook our distribution again...
+
+    dzil cook
+
+But this time, only the new dependencies need to be built, since the
+`dlib` directory still has all the dependencies from the last baking.
+
+Over time, the `dlib` directory may get crufty, or you just might
+want to cook from scratch again.  In that case, you "scrub" your
+workspace to remove the `dlib` directory...
+
+    dzil scrub
+
+Now the next time you cook, Dist::Zilla::Chef will assemble your
+distribution and all of its dependencies again.
 
 # SUPPORT
 
