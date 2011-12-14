@@ -55,7 +55,7 @@ structure for you...
   $> dzil new Frobulator
 
 Now we write some code.  Suppose you've decided that the C<Frobulator>
-is going to use L<Mojolicious>.  We also add an C<ABSTRACT>, which is
+is going to use L<Dancer>.  We also add an C<ABSTRACT>, which is
 required by Dist::Zilla...
 
   # in lib/Frobulator.pm
@@ -63,7 +63,7 @@ required by Dist::Zilla...
 
   # ABSTRACT: Does stuff
 
-  use Mojolicious;
+  use Dancer;
 
 And after a few minutes of coding, you have a few subroutines and
 maybe a couple test scripts to accompany C<Frobulator>.  Now it is
@@ -74,7 +74,7 @@ First, you need to gather the "ingredients" for your distribution and
 
   dzil stock
 
-L<Mojolicious> (and all of its dependencies) will now be "stocked" in
+L<Dancer> (and all of its dependencies) will now be "stocked" in
 a CPAN-like repository in the F<pan> directory.  Now you can "cook"
 your distribution and all of its dependencies together...
 

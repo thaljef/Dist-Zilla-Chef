@@ -115,25 +115,25 @@ in addition to those websites please use your favorite search engine to discover
 
 The default CPAN search engine, useful to view POD in HTML format.
 
-[http://search.cpan.org/dist/Pinto](http://search.cpan.org/dist/Pinto)
+[http://search.cpan.org/dist/Dist-Zilla-Chef](http://search.cpan.org/dist/Dist-Zilla-Chef)
 
 - CPAN Ratings
 
 The CPAN Ratings is a website that allows community ratings and reviews of Perl modules.
 
-[http://cpanratings.perl.org/d/Pinto](http://cpanratings.perl.org/d/Pinto)
+[http://cpanratings.perl.org/d/Dist-Zilla-Chef](http://cpanratings.perl.org/d/Dist-Zilla-Chef)
 
 - CPAN Testers
 
 The CPAN Testers is a network of smokers who run automated tests on uploaded CPAN distributions.
 
-[http://www.cpantesters.org/distro/P/Pinto](http://www.cpantesters.org/distro/P/Pinto)
+[http://www.cpantesters.org/distro/D/Dist-Zilla-Chef](http://www.cpantesters.org/distro/D/Dist-Zilla-Chef)
 
 - CPAN Testers Matrix
 
 The CPAN Testers Matrix is a website that provides a visual way to determine what Perls/platforms PASSed for a distribution.
 
-[http://matrix.cpantesters.org/?dist=Pinto](http://matrix.cpantesters.org/?dist=Pinto)
+[http://matrix.cpantesters.org/?dist=Dist-Zilla-Chef](http://matrix.cpantesters.org/?dist=Dist-Zilla-Chef)
 
 - CPAN Testers Dependencies
 
@@ -143,15 +143,15 @@ The CPAN Testers Dependencies is a website that shows a chart of the test result
 
 ## Bugs / Feature Requests
 
-[https://github.com/thaljef/Pinto/issues](https://github.com/thaljef/Pinto/issues)
+[https://github.com/thaljef/Dist-Zilla-Chef/issues](https://github.com/thaljef/Dist-Zilla-Chef/issues)
 
 ## Source Code
 
 
 
-[https://github.com/thaljef/Pinto](https://github.com/thaljef/Pinto)
+[https://github.com/thaljef/Dist-Zilla-Chef](https://github.com/thaljef/Dist-Zilla-Chef)
 
-    git clone git://github.com/thaljef/Pinto.git
+    git clone git://github.com/thaljef/Dist-Zilla-Chef.git
 
 # AUTHOR
 
