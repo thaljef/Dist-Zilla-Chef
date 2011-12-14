@@ -47,7 +47,7 @@ structure for you...
     $> dzil new Frobulator
 
 Now we write some code.  Suppose you've decided that the `Frobulator`
-is going to use [Mojolicious](http://search.cpan.org/perldoc?Mojolicious).  We also add an `ABSTRACT`, which is
+is going to use [Dancer](http://search.cpan.org/perldoc?Dancer).  We also add an `ABSTRACT`, which is
 required by Dist::Zilla...
 
     # in lib/Frobulator.pm
@@ -55,7 +55,7 @@ required by Dist::Zilla...
 
     # ABSTRACT: Does stuff
 
-    use Mojolicious;
+    use Dancer;
 
 And after a few minutes of coding, you have a few subroutines and
 maybe a couple test scripts to accompany `Frobulator`.  Now it is
@@ -66,7 +66,7 @@ First, you need to gather the "ingredients" for your distribution and
 
     dzil stock
 
-[Mojolicious](http://search.cpan.org/perldoc?Mojolicious) (and all of its dependencies) will now be "stocked" in
+[Dancer](http://search.cpan.org/perldoc?Dancer) (and all of its dependencies) will now be "stocked" in
 a CPAN-like repository in the `pan` directory.  Now you can "cook"
 your distribution and all of its dependencies together...
 
