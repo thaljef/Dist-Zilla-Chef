@@ -54,7 +54,7 @@ class...
 
     sub blazo { ... }
 
-Notice that 
+Notice that
 
 # SUPPORT
 

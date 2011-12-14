@@ -54,10 +54,8 @@ sub extract_dependencies {
 sub stock_pantry {
     my ($self, @deps) = @_;
 
-    my $pantry = $self->zilla->root->subdir('pantry');
-    $self->create_pantry($pantry) if not -e $pantry;
-
-    my $pinto = Pinto->new(root_dir => $pantry);
+    my $pan   = $self->create_or_find_pantry();
+    my $pinto = Pinto->new(root_dir => $pan);
     $pinto->new_batch(noinit => 1, nocommit => 1);
     $pinto->add_action('Import', package_name => $_) for @deps;
     $pinto->run_actions();
@@ -67,18 +65,21 @@ sub stock_pantry {
 
 #-------------------------------------------------------------------------------
 
-sub create_pantry {
-    my ($self, $pantry) = @_;
+sub create_or_find_pantry {
+    my ($self) = @_;
 
     # TODO: Look for a .git or .svn directory in the root directory
     # and then use the appropriate Store class.  Beware that the
     # Store::VCS::Git expects that the pantry itself is the root of
     # the work tree, not the zilla root.
 
-    my $creator = Pinto::Creator->new(root_dir => $pantry);
+    my $pan = $self->zilla->root->subdir('pan');
+    return $pan if -e $pan;
+
+    my $creator = Pinto::Creator->new(root_dir => $pan);
     $creator->create(noinit => 1);
 
-    return;
+    return $pan;
 }
 
 #-------------------------------------------------------------------------------
@@ -86,3 +87,36 @@ sub create_pantry {
 1;
 
 __END__
+
+=head1 SYNOPSIS
+
+  dzil stock
+
+=head1 DESCRIPTION
+
+This L<Dist::Zilla> command "stocks" the "pantry" with all the
+ingredients for your distribution.  More specifically, the C<stock>
+command extracts the dependencies from your distribution and uses
+L<Pinto> to import all of them into a local CPAN-like repository in
+the F<pan> directory.  As your distribution evolves and accumulates
+more dependencies, you can run the C<stock> command again to "stock"
+the additional ingredients.
+
+=head1 ARGUMENTS
+
+None.
+
+=head1 OPTIONS
+
+None.
+
+=head1 NOTES
+
+The easiest way to declare your dependencies is to use the
+L<Dist::Zilla::Plugin::AutoPrereqs> plugin, which automatically
+discovers dependencies by examining your code.  To use the plugin,
+add this to your F<dist.ini> file, like so...
+
+  [AutoPrereqs]
+
+

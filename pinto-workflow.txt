@@ -1,0 +1,35 @@
+New dist: dzil new
+Write some code
+Populate repos: dzil stock
+   pinto-admin -r pan create
+   dzil listdeps | pinto-admin -r pan import  --nocommit
+Build dist: dzil bake
+   dzil listdeps | cpanm -L .dlib --mirror pinto
+   dzil test -include dlib
+Write more code
+Populate repos: dzil stock
+   dzil listdeps | pinto-admin -r pan import --nocommit
+Build dist: dzil bake
+   dzil listdeps | cpanm -L .dlib --mirror pinto
+   dzil test -include dlib
+Ship dist: dzil rack
+   dzil release to pan
+Cleanup: dzil scrub
+   remove .dlib
+   remove .build
+Commit
+
+Configurable:
+   Repository location (default to ~/.pan)
+   Target perl (default to $^X)
+
+
+IDEA: Pinto::Any - Automatically use Pinto::Admin or Pinto::Remote
+depending on whether the repository is a local directory or remote
+URL.
+
+stock:   stock the pantry with ingredients for your dist
+restock: get latest version of all your ingredients
+bake:    build and test your dist from scratch
+rack:    stash your dist in the pantry
+scrub:   clean the entire kitchen
