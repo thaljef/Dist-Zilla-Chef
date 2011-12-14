@@ -1,4 +1,4 @@
-package Dist::Zilla::App::Command::bake;
+package Dist::Zilla::App::Command::cook;
 
 # ABSTRACT: build and test your dist from scratch
 
@@ -31,11 +31,11 @@ __END__
 
 =head1 SYNOPSIS
 
-  dzil bake
+  dzil cook
 
 =head1 DESCRIPTION
 
-This L<Dist::Zilla> command "bakes" your distribution from scratch.
+This L<Dist::Zilla> command "cooks" your distribution from scratch.
 It builds, tests, and installs, your distribution and all of its
 dependencies in a sandbox using L<cpanm> and L<local::lib>.  The
 dependencies are pulled from the local L<Pinto> repository in the
@@ -58,7 +58,7 @@ None.
 
 =head1 NOTES
 
-Before you can bake a distribution, you need to stock up on the
+Before you can cook a distribution, you need to stock up on the
 necessary ingredients (i.e. dependencies).  To do that, use the
 C<stock> command.
 
