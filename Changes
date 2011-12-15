@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+0.002     2011-12-15 00:31:55 America/Los_Angeles
+
      The "stock" command now has an --author option, to stock
      author-time dependencies as well.  This was stolen from the
      original DZ "listdeps" command.
