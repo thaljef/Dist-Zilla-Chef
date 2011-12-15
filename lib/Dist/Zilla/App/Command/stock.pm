@@ -70,16 +70,15 @@ sub _stock_pantry {
 sub _create_or_find_pantry {
     my ($self) = @_;
 
-    # TODO: Look for a .git or .svn directory in the root directory
-    # and then use the appropriate Store class.  Beware that the
-    # Store::VCS::Git expects that the pantry itself is the root of
-    # the work tree, not the zilla root.
-
     my $pan = $self->zilla->root->subdir('pan');
     return $pan if -e $pan;
 
+    my $store = -e $self->zilla->root->subdir('.svn') ? 'Pinto::Store::VCS::Svn'
+              : -e $self->zilla->root->subdir('.git') ? 'Pinto::Store::VCS::Git'
+              : 'Pinto::Store::File';
+
     my $creator = Pinto::Creator->new(root_dir => $pan);
-    $creator->create(noinit => 1);
+    $creator->create(noinit => 1, store => $store);
 
     return $pan;
 }
