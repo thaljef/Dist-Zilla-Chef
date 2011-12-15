@@ -1,0 +1,11 @@
+# CHECKSUMS file written on Thu Dec 15 07:53:55 2011 GMT by CPAN::Checksums (v2.08)
+$cksum = {
+  'PPI-1.208.tar.gz' => {
+    'md5' => 'd8b870c4dac08a901424220b1e9a9b7f',
+    'md5-ungz' => '55e93b3ac3691e1d48c2d72c16d913ae',
+    'mtime' => '2010-01-14',
+    'sha256' => '083b9903d76c15d9fc568b089cb15c6943f198da53319ddc1b497eee8cf6f5f9',
+    'sha256-ungz' => '005b6ce30eb8abc8f4d07ebc1596a1226fe8ea270f02ece5c29d701657e222b0',
+    'size' => 222582
+  }
+};
