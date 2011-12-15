@@ -1,5 +1,15 @@
 {{$NEXT}}
 
+     The "stock" command now has an --author option, to stock
+     author-time dependencies as well.  This was stolen from the
+     original DZ "listdeps" command.
+
+     When creating the "pantry", we now automatically configure it to
+     use the appropriate type of Store, based on the presence of VCS
+     files (i.e. .git or .svn directories).
+     
+     Now requires Pinto 0.029 or newer.
+
 0.001     2011-12-13 21:06:43 America/Los_Angeles
 
      Initial release.

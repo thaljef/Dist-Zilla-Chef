@@ -5,7 +5,7 @@ package Dist::Zilla::App::Command::stock;
 use strict;
 use warnings;
 
-use Pinto;
+use Pinto 0.029;    # better Git support
 use Pinto::Creator;
 use Moose::Autobox;
 use Dist::Zilla::App -command;
@@ -15,10 +15,23 @@ use Dist::Zilla::App -command;
 # VERSION
 
 #-------------------------------------------------------------------------------
+
+sub opt_spec {
+
+    return (
+
+        [ author =>  'include author dependencies' ],
+
+    );
+}
+
+#-------------------------------------------------------------------------------
+
 sub execute {
     my ($self, $opt, $arg) = @_;
 
     my @phases = qw(build test configure runtime);
+    push @phases, 'author' if $opt->{author};
     my @deps = $self->_extract_dependencies($self->zilla, \@phases);
     $self->_stock_pantry(@deps);
 
@@ -109,7 +122,13 @@ None.
 
 =head1 OPTIONS
 
-None.
+=over 4
+
+=item --author
+
+Also stock author-time dependencies in the pantry.
+
+=back
 
 =head1 NOTES
 
