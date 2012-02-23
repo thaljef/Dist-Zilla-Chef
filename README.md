@@ -131,7 +131,7 @@ The CPAN Testers is a network of smokers who run automated tests on uploaded CPA
 
 - CPAN Testers Matrix
 
-The CPAN Testers Matrix is a website that provides a visual way to determine what Perls/platforms PASSed for a distribution.
+The CPAN Testers Matrix is a website that provides a visual overview of the test results for a distribution on various Perls/platforms.
 
 [http://matrix.cpantesters.org/?dist=Dist-Zilla-Chef](http://matrix.cpantesters.org/?dist=Dist-Zilla-Chef)
 
