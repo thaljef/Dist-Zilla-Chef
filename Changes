@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+0.003     2012-02-22 17:06:36 America/Los_Angeles
+
      Updated to match API changes in Pinto.  Now requires
      Pinto-0.30 or later.
 
