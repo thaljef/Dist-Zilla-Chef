@@ -4,7 +4,7 @@ Dist::Zilla::Chef - Cook your distributions with Dist::Zilla
 
 # VERSION
 
-version 0.002
+version 0.003
 
 # DESCRIPTION
 
