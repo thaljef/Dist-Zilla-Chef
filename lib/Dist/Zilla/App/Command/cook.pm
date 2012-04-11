@@ -13,6 +13,12 @@ use Dist::Zilla::App -command;
 
 #-------------------------------------------------------------------------------
 
+sub opt_spec {
+    return (
+        [ 'notest|n',  "Don't run tests on cpanm-installed packages", ],
+    );
+}
+
 sub execute {
     my ($self, $opt, $arg) = @_;
 
@@ -20,7 +26,10 @@ sub execute {
     my $pan  = 'file://' . $self->zilla->root->subdir('pan')->absolute();
     my $archive = $self->zilla->build_archive();
 
-    system( qw(cpanm --mirror-only --mirror), $pan, '-L', $dlib, $archive );
+    my @args = ( qw(cpanm --mirror-only --mirror), $pan );
+    push @args, '-n' if $opt->{notest};
+    push @args, '-L', $dlib, $archive;
+    system( @args );
 
     return;
 }
@@ -52,7 +61,14 @@ application or component.
 
 =head1 ARGUMENTS
 
-None.
+=over 4
+
+=item  --notests|n
+
+Tells cpanm to install packages to your local F<pan> directory
+without running tests.
+
+=back
 
 =head1 OPTIONS
 

@@ -84,6 +84,10 @@ This builds, tests, and installs your distribution into the F<dlib>
 directory, along with all the dependencies.  The result is stashed
 in the F<dlib> directory.
 
+You can also cook without running tests using C<--notest|n>.
+
+  dzil cook -n
+
 Now suppose you add a new dependency on L<Test::More>.  Once again,
 we run the C<stock> command to gather any ingredients that are missing
 from our pantry...
@@ -105,8 +109,5 @@ work space to remove the C<dlib> directory...
 
 Now the next time you cook, Dist::Zilla::Chef will assemble your
 distribution and all of its dependencies again.
-
-
-
 
 
